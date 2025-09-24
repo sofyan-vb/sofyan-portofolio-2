@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
             scrollTop.style.display = window.scrollY > 300 ? 'block' : 'none';
         }
     };
+    
 
 const skillsSection = document.querySelector('.skills');
     const progressBars = document.querySelectorAll('.progress-bar');
@@ -65,29 +66,27 @@ const skillsSection = document.querySelector('.skills');
 
     const animateSkills = (entries, observer) => {
         entries.forEach(entry => {
-            // Cek apakah section 'skills' sudah masuk ke layar
+          
             if (entry.isIntersecting) {
                 
-                // Animasikan Technical Skills (Progress Bar)
+              
                 progressBars.forEach(bar => {
-                    // Ambil nilai dari atribut data-width
+                 
                     const targetWidth = bar.dataset.width;
-                    // Set custom property '--w' yang akan digunakan oleh CSS
-                    // Transisi di CSS akan otomatis menjalankan animasi
                     bar.style.setProperty('--w', targetWidth);
                 });
 
-                // Animasikan Professional Skills (Lingkaran)
+              
                 progressCircles.forEach(circle => {
-                    // Ambil nilai dari atribut data-percent
+                   
                     const targetPercent = circle.dataset.percent;
-                    // Set custom property '--p' yang akan digunakan oleh keyframes
+                
                     circle.style.setProperty('--p', targetPercent);
-                    // Terapkan animasi dari CSS
+                  
                     circle.style.animation = 'progress 2s forwards';
                 });
                 
-                // Hentikan pengamatan setelah animasi berjalan sekali
+                
                 observer.unobserve(entry.target);
             }
         });
@@ -100,6 +99,7 @@ const skillsSection = document.querySelector('.skills');
         });
         skillsObserver.observe(skillsSection);
     }
+
     
     const filterButtons = document.querySelectorAll('.portfolio-filter .btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
