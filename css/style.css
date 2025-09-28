@@ -33,6 +33,37 @@
 }
 
 
+.neon-pulse-text {
+    font-size: 4rem;
+    color: #ffffff;
+    opacity: 0; /* Mulai dari tidak terlihat */
+    
+    /* Animasi: fade-in dan pulse (denyutan neon) */
+    animation: 
+        fadeIn 1.5s ease-out forwards,
+        neonPulse 2s ease-in-out 1.5s infinite alternate; /* Dimulai setelah fade-in */
+}
+
+.neon-pulse-text span {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+/* Keyframes untuk Animasi */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes neonPulse {
+    0% {
+        text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
+    }
+    100% {
+        text-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -90,6 +121,7 @@ body:hover .cursor-outline {
     height: 40px;
     border: 2px solid rgb(221, 255, 0);
 }
+
 
 section {
     min-height: 100vh;
@@ -320,8 +352,6 @@ section.is-visible {
 }
 
 
-
-
 .info-box {
     display: flex;
     gap: 3rem;
@@ -526,6 +556,7 @@ section.is-visible {
     font-size: 1.6rem;
     margin: 2rem 0 3rem;
 }
+
 
 /* Services Section */
 .services {
@@ -976,6 +1007,69 @@ section.is-visible {
 }
 
 /* Footer Section */
+
+.footer-status-dot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    font-family: 'Source Code Pro', monospace;
+    color: #00ff00; 
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.dot-indicator {
+    width: 8px;
+    height: 8px;
+    background-color: #00ff00;
+    border-radius: 50%;
+    margin-right: 8px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.7);
+  }
+  70% {
+      
+    box-shadow: 0 0 0 10px rgba(0, 255, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+  }
+}
+
+
+.footer-time-readout {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    
+    font-family: 'Source Code Pro', monospace; /* Font coding */
+    color: #00ffff; 
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+#current-time {
+    font-size: 2.2rem;
+    font-weight: bold;
+    animation: neon-time-flicker 3s infinite alternate;
+}
+
+.timezone {
+    display: block; 
+    font-size:  0.9rem;
+    color: #cccccc;
+    margin-top: -3px;
+}
+
+@keyframes neon-time-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.9; }
+}
+
+
 .footer {
     display: flex;
     justify-content: space-between;
@@ -1002,11 +1096,18 @@ section.is-visible {
 
 
 @media (max-width: 768px) {
-    /* Bagian Home */
+  
     .home {
-        flex-direction: column;
+         flex-direction: column;
         text-align: center;
-        padding: 5rem 5% 5rem;
+        padding-top: 150px !important; 
+        padding-bottom: 5rem;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+     .home-content {
+        margin-top: 0; 
     }
     
     .home-content h3 {
@@ -1174,3 +1275,4 @@ section.is-visible {
         height: 350px;
     }
 }
+

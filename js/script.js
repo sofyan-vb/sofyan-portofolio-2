@@ -310,9 +310,29 @@ const langSwitcher = document.querySelector('.lang-switcher');
 let currentLang = 'en';
 
 function updateLanguage(lang) {
+    
+
+    function updateTime() {
+    const now = new Date();
+    // Mendapatkan waktu dalam format HH:MM:SS
+    const timeString = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false // Format 24 jam
+    });
+    
+    // Memperbarui elemen HTML dengan ID "current-time"
+    document.getElementById('current-time').textContent = timeString;
+}
+
+// Memanggil fungsi updateTime setiap 1 detik
+setInterval(updateTime, 1000);
+
+// Memanggilnya sekali saat awal untuk menampilkan waktu segera
+updateTime();
    
     document.documentElement.lang = lang;
-
  
     document.querySelector('a[href="#home"]').textContent = translations[lang].navHome;
     document.querySelector('a[href="#about"]').textContent = translations[lang].navAbout;
@@ -392,3 +412,5 @@ langSwitcher.addEventListener('click', (e) => {
 
 
 updateLanguage(currentLang);
+
+
