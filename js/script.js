@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-
     var typed_splash = new Typed('#typed-splash', {
         strings: ['ofyan .....'],
-        typeSpeed: 100,
+        typeSpeed: 150,
         showCursor: true,
         cursorChar: '|',
         loop: false,
@@ -13,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             splashScreen.style.visibility = 'hidden';
             setTimeout(() => {
                 splashScreen.remove();
-            }, 1000); 
+            }, 2000); 
         }
     });
 
@@ -310,28 +309,27 @@ const langSwitcher = document.querySelector('.lang-switcher');
 let currentLang = 'en';
 
 function updateLanguage(lang) {
-    
+
 
     function updateTime() {
     const now = new Date();
-    // Mendapatkan waktu dalam format HH:MM:SS
+   
     const timeString = now.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-        hour12: false // Format 24 jam
+        hour12: false 
     });
     
-    // Memperbarui elemen HTML dengan ID "current-time"
+    
     document.getElementById('current-time').textContent = timeString;
 }
 
-// Memanggil fungsi updateTime setiap 1 detik
-setInterval(updateTime, 1000);
 
-// Memanggilnya sekali saat awal untuk menampilkan waktu segera
+setInterval(updateTime, 1000);
 updateTime();
    
+
     document.documentElement.lang = lang;
  
     document.querySelector('a[href="#home"]').textContent = translations[lang].navHome;
@@ -400,7 +398,7 @@ updateTime();
     
     document.querySelector('.copyright p').textContent = translations[lang].copyright;
 
-    const phrases = lang === 'en' ? ['UX/UI Developer', 'Web Designer', 'Frontend Developer', 'Editor'] : ['Pengembang UX/UI', 'Perancang Web', 'Pengembang Frontend', 'Editor'];
+    const phrases = lang === 'en' ? ['UI/UX Developer', 'Web Designer', 'Frontend Developer', 'Editor'] : ['Pengembang UI/UX', 'Perancang Web', 'Pengembang Frontend', 'Editor'];
     window.updateScramblePhrases(phrases);
 }
 
