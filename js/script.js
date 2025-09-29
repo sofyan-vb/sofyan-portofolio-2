@@ -241,13 +241,16 @@ const translations = {
         portfolioWebApp: "Web App",
         contactTitle: "Contact Me",
         contactSubtitle: "ASK ME A QUESTION",
-        contactName: "Your Name",
-        contactEmail: "Your Email",
-        contactAddress: "Your Address",
-        contactPhone: "Nomor Telepon",
-        contactMessage: "Your Message",
-        sendMessage: "Kirim Pesan",
-        copyright: "Copyright © 2024 by Sofyan || All Right Reserved."
+        contactName: "Name",
+        contactEmail: "Email",
+        contactAddress: "Address",
+        contactPhone: "Phone Number",
+        contactMessage: "Message",
+        sendMessage: "Send Message",
+        copyright: "Copyright © 2024 by Sofyan || All Right Reserved.",
+        systemOnline: "SYSTEM ONLINE",
+        timezone: "WIB / GMT+7"
+
     },
     id: {
         navHome: "Beranda",
@@ -264,7 +267,7 @@ const translations = {
         github: "Github :",
         downloadCV: "Unduh CV",
         hireMeNow: "Rekrut Saya Sekarang!",
-        aboutIntro: "IZINKAN SAYA MEMPERKENALKAN DIRI",
+        aboutIntro: "IZINKAN SAYA MEMPERKENALkan DIRI",
         aboutTitle: "Tentang Saya",
         aboutSubtitle: "Kisah yang baik",
         aboutYearsExp: "Tahun Pengalaman",
@@ -295,13 +298,15 @@ const translations = {
         portfolioWebApp: "Aplikasi Web",
         contactTitle: "Hubungi Saya",
         contactSubtitle: "AJUKAN PERTANYAAN",
-        contactName: "Nama Anda",
-        contactEmail: "Email Anda",
-        contactAddress: "Alamat Anda",
+        contactName: "Nama",
+        contactEmail: "Email",
+        contactAddress: "Alamat",
         contactPhone: "Nomor Telepon",
-        contactMessage: "Pesan Anda",
+        contactMessage: "Pesan",
         sendMessage: "Kirim Pesan",
-        copyright: "Hak Cipta © 2024 oleh Sofyan || Semua Hak Dilindungi."
+        copyright: "Hak Cipta © 2024 oleh Sofyan || Semua Hak Dilindungi.",
+        systemOnline: "SISTEM ONLINE",
+        timezone: "WIB / GMT+7"
     }
 };
 
@@ -309,25 +314,34 @@ const langSwitcher = document.querySelector('.lang-switcher');
 let currentLang = 'en';
 
 function updateLanguage(lang) {
-
+    const timezoneText = translations[lang].timezone;
 
     function updateTime() {
-    const now = new Date();
-   
-    const timeString = now.toLocaleTimeString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false 
-    });
-    
-    
-    document.getElementById('current-time').textContent = timeString;
-}
+        const now = new Date();
+        
+        // Atur agar waktu ditampilkan dalam format lokal (misal 24 jam)
+        const timeString = now.toLocaleTimeString('en-US', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false // Menggunakan format 24 jam
+        });
+        
+        // PERBAIKAN: Perbarui teks waktu dan timezone
+        const currentTimeElement = document.getElementById('current-time');
+        const timezoneElement = document.getElementById('timezone-text');
+
+        if (currentTimeElement) {
+            currentTimeElement.textContent = timeString;
+        }
+        if (timezoneElement) {
+            timezoneElement.textContent = timezoneText;
+        }
+    }
 
 
-setInterval(updateTime, 1000);
-updateTime();
+    setInterval(updateTime, 1000);
+    updateTime();
    
 
     document.documentElement.lang = lang;
@@ -345,8 +359,10 @@ updateTime();
     document.querySelector('.home-content p').textContent = translations[lang].homeParagraph;
     document.querySelector('.email-info h5').textContent = translations[lang].email;
     document.querySelector('.github-info h5').textContent = translations[lang].github;
-    document.querySelector('.btn-box a:nth-child(1)').textContent = translations[lang].downloadCV;
-    document.querySelector('.btn-box a:nth-child(2)').textContent = translations[lang].hireMeNow;
+    
+    // Tombol Download CV & Hire Me Now!
+    document.querySelector('.btn-box a:nth-child(1) span').textContent = translations[lang].downloadCV;
+    document.querySelector('.btn-box a:nth-child(2) span').textContent = translations[lang].hireMeNow;
 
     
     document.querySelector('.about-content span').textContent = translations[lang].aboutIntro;
@@ -370,33 +386,45 @@ updateTime();
     
     document.querySelector('.skills .heading').textContent = translations[lang].skillsMainTitle;
     document.querySelector('.skills span').textContent = translations[lang].skillsSubtitle;
-    document.querySelector('.skill-box:nth-child(1) h3').textContent = translations[lang].technicalSkills;
-    document.querySelector('.skill-box:nth-child(2) h3').textContent = translations[lang].professionalSkills;
-    document.querySelector('.circle:nth-child(1) span').textContent = translations[lang].teamwork;
-    document.querySelector('.circle:nth-child(2) span').textContent = translations[lang].creativity;
-    document.querySelector('.circle:nth-child(3) span').textContent = translations[lang].projectManagement;
-    document.querySelector('.circle:nth-child(4) span').textContent = translations[lang].communication;
-
- 
+    document.querySelector('.skill-box h3').textContent = translations[lang].technicalSkills;
+    document.querySelector('.professional-skills-container h3').textContent = translations[lang].professionalSkills;
+    
+    // PORTFOLIO FILTER BUTTONS
+    document.getElementById('filter-all').textContent = translations[lang].portfolioAll;
+    document.getElementById('filter-product').textContent = translations[lang].portfolioProduct;
+    document.getElementById('filter-interacting').textContent = translations[lang].portfolioInteracting;
+    document.getElementById('filter-webapp').textContent = translations[lang].portfolioWebApp;
+    
     document.querySelector('.portfolio .heading').textContent = translations[lang].portfolioTitle;
     document.querySelector('.portfolio span').textContent = translations[lang].portfolioSubtitle;
-    document.querySelector('.portfolio-filter button:nth-child(1)').textContent = translations[lang].portfolioAll;
-    document.querySelector('.portfolio-filter button:nth-child(2)').textContent = translations[lang].portfolioProduct;
-    document.querySelector('.portfolio-filter button:nth-child(3)').textContent = translations[lang].portfolioInteracting;
-    document.querySelector('.portfolio-filter button:nth-child(4)').textContent = translations[lang].portfolioWebApp;
-
+    
     
     document.querySelector('.contact .heading').textContent = translations[lang].contactTitle;
     document.querySelector('.contact span').textContent = translations[lang].contactSubtitle;
-    document.querySelector('.contact form .input-box input:nth-child(1)').placeholder = translations[lang].contactName;
-    document.querySelector('.contact form .input-box input:nth-child(2)').placeholder = translations[lang].contactEmail;
-    document.querySelector('.contact form .input-box input:nth-child(3)').placeholder = translations[lang].contactAddress;
-    document.querySelector('.contact form .input-box input:nth-child(4)').placeholder = translations[lang].contactPhone;
-    document.querySelector('.contact form textarea').placeholder = translations[lang].contactMessage;
-    document.querySelector('.contact form .btn').value = translations[lang].sendMessage;
 
+    // CONTACT FORM PLACEHOLDERS
+    document.querySelector('#name').placeholder = translations[lang].contactName; 
+    document.querySelector('#email').placeholder = translations[lang].contactEmail;
+    document.querySelector('#address').placeholder = translations[lang].contactAddress;
+    document.querySelector('#phone').placeholder = translations[lang].contactPhone;
+    document.querySelector('#message').placeholder = translations[lang].contactMessage;
+
+    // Tombol Submit
+    const submitBtnSpan = document.querySelector('.submit-btn span');
+    if(submitBtnSpan) {
+        submitBtnSpan.textContent = translations[lang].sendMessage;
+    }
     
-    document.querySelector('.copyright p').textContent = translations[lang].copyright;
+    // FOOTER
+    const systemStatus = document.getElementById('system-status-text');
+    if (systemStatus) {
+        systemStatus.textContent = translations[lang].systemOnline;
+    }
+
+    const copyrightText = document.getElementById('copyright-text');
+    if (copyrightText) {
+        copyrightText.textContent = translations[lang].copyright;
+    }
 
     const phrases = lang === 'en' ? ['UI/UX Developer', 'Web Designer', 'Frontend Developer', 'Editor'] : ['Pengembang UI/UX', 'Perancang Web', 'Pengembang Frontend', 'Editor'];
     window.updateScramblePhrases(phrases);
@@ -410,5 +438,3 @@ langSwitcher.addEventListener('click', (e) => {
 
 
 updateLanguage(currentLang);
-
-

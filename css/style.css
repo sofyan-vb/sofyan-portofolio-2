@@ -988,72 +988,107 @@ section.is-visible {
 }
 
 
-
 /* Contact Section */
 .contact {
     background: var(--second-bg-color);
-    text-align: center;
+    text-align: center; 
 }
 
-.contact form {
+.contact-form {
     max-width: 70rem;
     margin: 1rem auto;
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.contact form .input-box {
+    margin-bottom: 5rem;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    gap: 2rem;
 }
 
-.contact form .input-box input,
-.contact form textarea {
-    width: 100%;
-    padding: 1.5rem;
-    font-size: 1.6rem;
-    color: var(--text-color);
-    background: var(--bg-color);
-    border-radius: .8rem;
-    margin: .7rem 0;
-}
-
-.contact form .input-box input {
-    width: 49%;
-}
-
-.contact form textarea {
-    resize: none;
-}
-
-.contact form .btn {
-    margin-top: 2rem;
-    cursor: pointer;
-}
-
-.contact form .input-box input,
-.contact form textarea {
-    background: transparent;
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
     border: 2px solid #00ffff; 
+    border-radius: 5px;
+    padding: 10px;
+    transition: border-color 0.3s;
+}
+
+.half-width {
+    flex-basis: calc(50% - 10px); 
+    box-sizing: border-box;
+}
+
+.full-width {
+    width: 100%;
+    align-items: flex-start; 
+    padding-top: 2rem;
+}
+
+
+.input-group i {
+    color: #00ffff;
+    font-size: 1.8em;
+    margin-right: 10px;
+}
+
+
+.input-group input,
+.input-group textarea {
+    flex-grow: 1; 
+    background: transparent;
+    border: none;
     color: #fff;
+    font-size: 1.6rem;
+    padding: 1rem 1.5rem;
+    outline: none;
+}
+
+
+.input-group input::placeholder,
+.input-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+}
+
+.submit-btn {
+    width: 100%;
     padding: 15px;
-    border-radius: 8px;
-    transition: box-shadow 0.3s ease; 
-    outline: none; 
+    background-color: #00ffff;
+    color: #1a001a;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 10px;
 }
 
 
-.contact form .input-box input:focus,
-.contact form textarea:focus {
-    box-shadow: 
-        0 0 5px #00ffff, 
-        0 0 10px #00ffff, 
-        0 0 15px #00ffff;
+.submit-btn:hover {
+    background-color: #66ffff; 
+    transform: translateY(-2px);
 }
+
+
+@media (max-width: 600px) {
+    .contact-container {
+        width: 95%;
+        padding: 20px;
+    }
+    .half-width {
+        flex-basis: 100%; 
+    }
+}
+
 
 /* Footer Section */
-
 .footer-status-dot {
     display: flex;
     align-items: center;
